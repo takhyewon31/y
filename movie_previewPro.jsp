@@ -47,13 +47,13 @@
 	Timestamp reg_date = new Timestamp(System.currentTimeMillis());
 
 	if(board_id == 4) { //시사회
-		String category = multi.getParameter("category"); // 시사회 영화관 카테고리 DB가 따로 있는지
+		String category = multi.getParameter("영화관 카테고리");
 	    article.setArticle_writer(article_writer);
 	    article.setArticle_title(article_title);
 	    article.setArticle_content(article_content);
 	    article.setReg_date(new Timestamp(System.currentTimeMillis()) );
 	    article.setArticle_file(fileName);
-	    article.setCategory(category); 
+	    article.setCategory(영화관 카테고리); 
 	    
 	    ArticleDBBean article_db = ArticleDBBean.getInstance();
 	    article_db.insertArticle(article); 

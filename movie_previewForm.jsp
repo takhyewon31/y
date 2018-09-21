@@ -33,7 +33,7 @@
          <c:if test="<%=board_id == 4 %>">
             <div class="form-group col">
                   <label for="inputCategory">영화관</label> 
-                  <select class="form-control" id="inputCategory" name="category">
+                  <select class="form-control" id="영화관 카테고리" name="영화관 카테고리">
                   <option value="전체" selected="selected">전체</option>
                   <option value="CGV">CGV</option>
                   <option value="롯데시네마">롯데시네마</option>
