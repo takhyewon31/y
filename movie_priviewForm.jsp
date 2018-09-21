@@ -6,7 +6,7 @@
     
 <%
    request.setCharacterEncoding("utf-8");
-   String title = "이슈 입력"; 
+   String title = "시사회 입력"; 
    /*   int board_id = Integer.parseInt(request.getParameter("board_id"));
    String userid = request.getParameter("article_writer");
    BoardDBBean board_db = BoardDBBean.getInstance();
@@ -23,12 +23,23 @@
 <div class="container">
    <h3>
       <%=title%>
-      <small class="text-muted">movie Issue input</small>
+      <small class="text-muted">movie Preview input</small>
    </h3>
    <div class="col">
 
-<%--<input type="hidden" name="article_id" value="<%=article_id%>">--%>
+<%--<input type="hidden" name="article_id" value="<%=article_id%>"> --%>
          
+       <%-- <c:if test="<%=board_id == 4 %>">--%>
+            <div class="form-group">
+                  <label for="inputCategory">영화관</label> 
+                  <select class="form-control" id="inputCategory" name="영화관카테고리">
+                  <option value="전체" selected="selected">전체</option>
+                  <option value="CGV">CGV</option>
+                  <option value="롯데시네마">롯데시네마</option>
+                  <option value="메가박스">메가박스</option>
+               </select>
+            </div>
+        <%-- </c:if> --%>
          <div class="form-group">
             <label for="inputTitle" class="col-sm-3 col-form-label">제목</label>
             <div class="col-sm-20">
@@ -36,19 +47,33 @@
             </div>
          </div>
          
+         
+        <div class="form-group row">
+         <div class="form-group col">
+            <label for="Textarea">일시</label>
+            <textarea class="form-control" id="inputContent" name="preview_date" rows="1"></textarea>
+         </div>
+           <div class="form-group col">
+            <label for="Textarea">지역</label>
+            <textarea class="form-control" id="inputContent" name="preview_region" rows="1"></textarea>
+         </div>
+          </div>
+         
          <div class="form-group row">
            <div class="form-group col">
             <label for="Textarea">작성일</label>
-            <textarea class="form-control" id="inputContent" name="article_content" rows="1"></textarea>
+            <textarea class="form-control" id="inputContent" name="reg_date" rows="1"></textarea>
          </div>
             <div class="form-group col">
             <label for="Textarea">원본글 주소</label>
             <textarea class="form-control" id="inputContent" name="original_url" rows="1"></textarea>
          </div>
           </div>
-  
+          
+           
+         
          <div class="form-group">
-            <label for="exampleInputFile">이슈 포스터</label> 
+            <label for="exampleInputFile">영화 포스터</label> 
             <input type="file" class="form-control-file" id="inputFile" name="poster" aria-describedby="fileHelp" accept="image/*"> 
             <small id="fileHelp" class="form-text text-muted">이미지 파일만 첨부 가능합니다.</small>
          </div>

@@ -42,17 +42,24 @@
 	
 	//가져올 데이터
 	String article_title = multi.getParameter("article_title");
-	String original_url = multi.getParameter("original_url");
+	Datetime preview_date = multi.getParameter("preview_date");
+	String preview_region = multi.getParameter("preview_region");
 	Timestamp reg_date = new Timestamp(System.currentTimeMillis());
-	
+	String original_url = multi.getParameter("original_url");
+	String cinema = multi.getParameter("cinema");
 
-	if(board_id == 5) { //영화이슈
-	    issue.setArticle_title(article_title);
-	    issue.setOriginal_url(original_url);
-	    issue.setReg_date(new Timestamp(System.currentTimeMillis()) );
+	if(board_id == 4) { //시사회
+		String category = multi.getParameter("category");
+	    preview.setArticle_title(article_title);
+	    preview.setPreview_date(preview_date);
+	    preview.setPreview_region(preview_region);
+	    preview.setReg_date(new Timestamp(System.currentTimeMillis()) );
+	    preview.setPreview_original_url(original_url);
+	    preview.setPreview_cinema(cinema);
+	    preview.setCategory(영화카테고리); 
 	    
 	    ArticleDBBean article_db = ArticleDBBean.getInstance();
 	    article_db.insertArticle(article); 
-	    response.sendRedirect("./movie_issue.jsp");
+	    response.sendRedirect("./movie_preview.jsp");
 	} 
 %>
