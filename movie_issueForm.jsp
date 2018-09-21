@@ -54,7 +54,7 @@
          </div>
 
          <button type="submit" class="btn btn-md btn-primary">작성하기</button>
-         <button type="button" class="btn btn-md btn-outline-secondary" onclick="window.location='./movie_preview">목록으로</button>
+         <button type="button" class="btn btn-md btn-outline-secondary" onclick="window.location='./movie_issue">목록으로</button>
 </div>
 
 <jsp:include page="/module/footer.jsp" flush="false" />
