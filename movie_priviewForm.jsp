@@ -32,7 +32,7 @@
        <%-- <c:if test="<%=board_id == 4 %>">--%>
             <div class="form-group">
                   <label for="inputCategory">영화관</label> 
-                  <select class="form-control" id="inputCategory" name="영화관카테고리">
+                  <select class="form-control" id="inputCategory" name="category">
                   <option value="전체" selected="selected">전체</option>
                   <option value="CGV">CGV</option>
                   <option value="롯데시네마">롯데시네마</option>
@@ -40,41 +40,36 @@
                </select>
             </div>
         <%-- </c:if> --%>
-         <div class="form-group">
-            <label for="inputTitle" class="col-sm-3 col-form-label">제목</label>
-            <div class="col-sm-20">
+        
+            <div class="form-group">
+           		 <label for="inputTitle" class="col-sm-3 col-form-label">제목</label>
+           		 <div class="col-sm-20">
                <input type="text" class="form-control" id="inputTitle" name="article_title" maxlength="50">
-            </div>
-         </div>
+           	</div>
+          </div>
          
-         
+            <div class="form-group row">
+            	<div class="form-group col">
+           		 <label for="Textarea">원본글 주소</label>
+            	<textarea class="form-control" id="inputContent" name="article_content" rows="1"></textarea>
+         	</div>
+          </div>
+          
         <div class="form-group row">
          <div class="form-group col">
             <label for="Textarea">일시</label>
-            <textarea class="form-control" id="inputContent" name="preview_date" rows="1"></textarea>
+            <textarea class="form-control" id="inputContent" name="article_content" rows="1"></textarea>
          </div>
            <div class="form-group col">
             <label for="Textarea">지역</label>
-            <textarea class="form-control" id="inputContent" name="preview_region" rows="1"></textarea>
+            <textarea class="form-control" id="inputContent" name="article_content" rows="1"></textarea>
          </div>
-          </div>
-         
-         <div class="form-group row">
-           <div class="form-group col">
-            <label for="Textarea">작성일</label>
-            <textarea class="form-control" id="inputContent" name="reg_date" rows="1"></textarea>
-         </div>
-            <div class="form-group col">
-            <label for="Textarea">원본글 주소</label>
-            <textarea class="form-control" id="inputContent" name="original_url" rows="1"></textarea>
-         </div>
-          </div>
-          
+        </div>
            
          
          <div class="form-group">
             <label for="exampleInputFile">영화 포스터</label> 
-            <input type="file" class="form-control-file" id="inputFile" name="poster" aria-describedby="fileHelp" accept="image/*"> 
+            <input type="file" class="form-control-file" id="inputFile" name="article_file" aria-describedby="fileHelp" accept="image/*"> 
             <small id="fileHelp" class="form-text text-muted">이미지 파일만 첨부 가능합니다.</small>
          </div>
 

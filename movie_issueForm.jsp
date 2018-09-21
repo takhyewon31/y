@@ -27,7 +27,7 @@
    </h3>
    <div class="col">
 
-<%--<input type="hidden" name="article_id" value="<%=article_id%>">--%>
+<%--<input type="hidden" name="article_id" value="<%=article_id%>"> --%>
          
          <div class="form-group">
             <label for="inputTitle" class="col-sm-3 col-form-label">제목</label>
@@ -37,19 +37,15 @@
          </div>
          
          <div class="form-group row">
-           <div class="form-group col">
-            <label for="Textarea">작성일</label>
-            <textarea class="form-control" id="inputContent" name="article_content" rows="1"></textarea>
-         </div>
             <div class="form-group col">
             <label for="Textarea">원본글 주소</label>
-            <textarea class="form-control" id="inputContent" name="original_url" rows="1"></textarea>
+            <textarea class="form-control" id="inputContent" name="article_content" rows="1"></textarea>
          </div>
           </div>
   
          <div class="form-group">
             <label for="exampleInputFile">이슈 포스터</label> 
-            <input type="file" class="form-control-file" id="inputFile" name="poster" aria-describedby="fileHelp" accept="image/*"> 
+            <input type="file" class="form-control-file" id="inputFile" name="article_file" aria-describedby="fileHelp" accept="image/*"> 
             <small id="fileHelp" class="form-text text-muted">이미지 파일만 첨부 가능합니다.</small>
          </div>
 
