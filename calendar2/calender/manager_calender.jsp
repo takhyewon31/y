@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <%
 	request.setCharacterEncoding("utf-8");
@@ -36,8 +35,9 @@
 	</h3>
 
 	<br>
-	
-	<button type=Button id="myBtn">새 일정</button>
+	<br>
+	<br>
+	<button type=Button id="myBtn" onclick="myFunction()">새 일정</button>
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <!-- Modal content -->
@@ -52,14 +52,15 @@
 		 		<option value="CGV">CGV</option>
 		 		<option value="Lotte">Lotte</option>
 		 		<option value="MegaBox">MegaBox</option>
-			</select>   
+			</select>
           		<label for="inputTitle" class="col-sm-5 col-form-label">제목</label>
             	<input type="text" class="form-control" id="inputTitle" name="article_title" maxlength="50">
             	<label for="inputTitle" class="col-sm-5 col-form-label">참석자</label>
             	<input type="text" class="form-control" id="attendee" name="article_title" maxlength="50">
           </div>                                                                       
       	  <div class="modal-footer">
-		<input type="button" name="btn" id="btn" value="Click">
+		<input type="button" name="btn" id="input" value="삽입">
+		<input type="button" name="btn" id="remove" value="삭제">
 	  </div>
      </div> 
  	</div>

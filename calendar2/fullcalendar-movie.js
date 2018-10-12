@@ -15,7 +15,24 @@
  * Date: Mon Jul 5 16:07:40 2010 -0700
  *
  */
+/* 툴팁 띄우기
+   $(function() {
 
+  $('#calendar').fullCalendar({
+    defaultView: 'month',
+
+    eventRender: function(eventObj, $el) {
+      $el.popover({
+        title: eventObj.cine,
+        content: eventObj.cine,
+        trigger: 'hover',
+        placement: 'top',
+        container: 'body'
+      });
+    },
+  });
+
+}); */
 	$(document).ready(function() {
 	
 		var date = new Date();
@@ -29,32 +46,81 @@
 				center: 'title',
 				right: 'month'
 			},
+			events: "http://localhost:8000/fullcalendar/events.php",
+			eventRender: function(event, element, view) {
+				    if (event.allDay === 'true') {
+				     event.allDay = true;
+				    } else {
+				     event.allDay = false;
+				    }
+				   },
 			selectable: true,
 			selectHelper: true, 
 			select: function(start, end, allDay) {
-				var title = prompt('시사회 명 :');
+				var title = ($('#cine option:selected').val());
 				if (title) {
+					
 					calendar.fullCalendar('renderEvent',
 						{
 							title: title,
 							start: start,
 							end: end,
 							
-						},
-						true // make the event "stick"
-					);
+						}),
+				$.ajax({
+					url: 'http://localhost:8000/fullcalendar/add_events.php',
+					data: 'title='+ title+'&start='+ start +'&end='+ end +'&url='+ url ,
+					type: "POST",
+					success: function(json) {
+					alert('Added Successfully');
+					}
+				});
+						
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+				}),
+				true // make the event "stick"
 				}
 				calendar.fullCalendar('unselect');
-			},
+				},
+			
 			editable: true,
+			eventDrop: function(event, delta) {
+				   var start = $.fullCalendar.formatDate(event.start, "");
+				   var end = $.fullCalendar.formatDate(event.end, "");
+				   $.ajax({
+				   url: 'http://localhost:8000/fullcalendar/update_events.php',
+				   data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+				   type: "POST",
+				   success: function(json) {
+				    alert("Updated Successfully");
+				   }
+				   });
+				   },
+				   eventResize: function(event) {
+				   var start = $.fullCalendar.formatDate(event.start, "");
+				   var end = $.fullCalendar.formatDate(event.end, "");
+				   $.ajax({
+				    url: 'http://localhost:8000/fullcalendar/update_events.php',
+				    data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+				    type: "POST",
+				    success: function(json) {
+				     alert("Updated Successfully");
+				    }
+				   });
+				   }
 		});
+		
 		$(document).ready(function() {
 
 			$('#btn').click(function() {
-
-				alert($('#cine option:selected').val());
 			});
-
+			
+			/* fullCalendar ( 'removeEventSources', optionalSourcesArray ) 삭제 기능 */ 
 		});
 		   // Get the modal
         var modal = document.getElementById('myModal');
@@ -83,3 +149,5 @@
         }
 
 	});
+    
+	
