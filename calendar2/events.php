@@ -1,20 +1,20 @@
 <?php
-// List of events
+// 이벤트 목록
  $json = array();
 
- // Query that retrieves events
+ // 이벤트 가져오는 쿼리
  $requete = "SELECT * FROM evenement ORDER BY id";
 
- // connection to the database
+ // DB 연결
  try {
  $bdd = new PDO('mysql:host=localhost;dbname=fullcalendar', 'root', 'root');
  } catch(Exception $e) {
   exit('Unable to connect to database.');
  }
- // Execute the query
+ // 쿼리 실행
  $resultat = $bdd->query($requete) or die(print_r($bdd->errorInfo()));
 
- // sending the encoded result to success page
+ // 페이지 전송
  echo json_encode($resultat->fetchAll(PDO::FETCH_ASSOC));
 
 ?>

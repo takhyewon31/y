@@ -33,6 +33,7 @@
   });
 
 }); */
+/* 화면 메뉴*/
 	$(document).ready(function() {
 	
 		var date = new Date();
@@ -47,14 +48,16 @@
 				right: 'month'
 			},
 			events: "http://localhost:8000/fullcalendar/events.php",
-			eventRender: function(event, element, view) {
+			
+            eventRender: function(event, element, view) {
 				    if (event.allDay === 'true') {
 				     event.allDay = true;
 				    } else {
 				     event.allDay = false;
 				    }
 				   },
-			selectable: true,
+			/*prompt 대신 띄워주는 것. 값은 아직 selected만 넣었습니다.*/
+            selectable: true,
 			selectHelper: true, 
 			select: function(start, end, allDay) {
 				var title = ($('#cine option:selected').val());
@@ -67,6 +70,7 @@
 							end: end,
 							
 						}),
+                /*새일정 추가.*/
 				$.ajax({
 					url: 'http://localhost:8000/fullcalendar/add_events.php',
 					data: 'title='+ title+'&start='+ start +'&end='+ end +'&url='+ url ,
@@ -87,10 +91,10 @@
 				}
 				calendar.fullCalendar('unselect');
 				},
-			
+            /*일정 갱신.*/
 			editable: true,
 			eventDrop: function(event, delta) {
-				   var start = $.fullCalendar.formatDate(event.start, "");
+				   var start = $.fullCalendar.formatDate(event.start, ""); 
 				   var end = $.fullCalendar.formatDate(event.end, "");
 				   $.ajax({
 				   url: 'http://localhost:8000/fullcalendar/update_events.php',
@@ -101,7 +105,7 @@
 				   }
 				   });
 				   },
-				   eventResize: function(event) {
+            eventResize: function(event) {
 				   var start = $.fullCalendar.formatDate(event.start, "");
 				   var end = $.fullCalendar.formatDate(event.end, "");
 				   $.ajax({
@@ -116,11 +120,11 @@
 		});
 		
 		$(document).ready(function() {
-
+            /*입력버튼*/
 			$('#btn').click(function() {
 			});
-			
-			/* fullCalendar ( 'removeEventSources', optionalSourcesArray ) 삭제 기능 */ 
+		
+			/* fullCalendar ( 'removeEventSources', optionalSourcesArray ) 삭제 기능 구현X*/ 
 		});
 		   // Get the modal
         var modal = document.getElementById('myModal');
