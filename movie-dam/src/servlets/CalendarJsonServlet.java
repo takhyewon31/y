@@ -46,9 +46,7 @@ public class CalendarJsonServlet extends HttpServlet {
 	            response.setCharacterEncoding("UTF-8");
 	            PrintWriter out = response.getWriter();
 	            out.write(new Gson().toJson(progs));
-	            
-	           
-	            
+	         
 	        } catch (ClassNotFoundException ex) {
 	            Logger.getLogger(CalendarJsonServlet.class.getName()).log(Level.SEVERE, null, ex);
 	        } catch (SQLException ex) {
