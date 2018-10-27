@@ -30,7 +30,7 @@ public class CalendarJsonServlet extends HttpServlet {
 	            List progs = new ArrayList();
 	            
 	            Class.forName("com.mysql.jdbc.Driver");
-	            Connection con = DriverManager.getConnection("java:comp/env", "miso", "");
+	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/calendar", "miso", "misoadmin");
 	            ResultSet rs = con.createStatement().executeQuery("SELECT `id`, `title`, `start`, `end` FROM `events`");
 	            
 	            while (rs.next()) {

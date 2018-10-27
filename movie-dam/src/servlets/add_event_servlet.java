@@ -32,7 +32,7 @@ public class add_event_servlet extends HttpServlet {
 	            cd.setEnd(request.getParameter("end"));
 	            
 	            Class.forName("com.mysql.jdbc.Driver");
-	            Connection con = DriverManager.getConnection("java:comp/env", "miso", "");
+	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/calendar", "miso", "misoadmin");
 	            int success = con.createStatement().executeUpdate("INSERT INTO `events`(`id`, `title`, `start`, `end`) VALUES ('" + cd.getId() + "','" + cd.getTitle() + "','" + cd.getStart() + "','" + cd.getEnd() + "')");
 	            if (success > 0) {
 	                response.sendRedirect("add_event.jsp?message=succ");

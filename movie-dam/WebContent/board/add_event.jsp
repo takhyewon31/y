@@ -11,7 +11,7 @@
 <% int id = 0; %>
 <%
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:8000/calendar", "root", "");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/miso", "miso", "misoadmin");
     ResultSet rs = con.createStatement().executeQuery("SELECT COUNT(`id`) FROM `events`");
     if (rs.next()) {
         id = rs.getInt(1)+1;
