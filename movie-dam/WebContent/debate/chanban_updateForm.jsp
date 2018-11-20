@@ -12,7 +12,6 @@
 	String pageNum = request.getParameter("pageNum");
 	String userid = (String)session.getAttribute("userid");
 	
-	
 	ChanbanDBBean dbPro = ChanbanDBBean.getInstance();
 	ChanbanDataBean chanban = dbPro.updateGetChanban(cb_id);
 %>
@@ -41,42 +40,56 @@
 
 	<div class="row justify-content-center">
 		<div class="col-12">
-			<form method="post" name="updateform" action="chanban_updatePro.jsp?pageNum=<%=pageNum%>&cb_id=<%=cb_id %>" onsubmit="return writeSave()" enctype="multipart/form-data">
+			<form method="post" name="writeForm" action="chanban_updatePro.jsp?pageNum=<%=pageNum%>&cb_id=<%=cb_id %>" onsubmit="return writeSave()" enctype="multipart/form-data">
 	 			<input type="hidden" name="cb_id" value="<%=cb_id%>"> 
-				
-				<div class="form-group row">
-					<label for="inputWriter" class="col-sm-2 col-form-label">작성자</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputWriter" name="cb_writer" value="<%=chanban.getCb_writer() %>" readonly="readonly">
+	 			<input type="hidden" id="inputWriter" name="cb_writer" value="<%=userid%>" readonly="readonly" required="required">
+
+				<div class="form-group row mb-3">
+					<label for="inputWriter" class="col-sm-2 col-form-label">영화</label>
+					<div class="input-group col-sm-10">
+						<input type="text" class="form-control" id="inputWriter" name="cb_movie" placeholder="검색 버튼을 눌러 영화를 찾아주세요." value="<%=chanban.getCb_movie()%>" readonly="readonly" required="required">
+						<div class="input-group-append">
+							<button type="button" class="btn btn-outline-secondary" onclick="search_movie();">검색</button>
+						</div>
 					</div>
 				</div>
-				<div class="form-group row">
+
+				<div class="form-group row mb-3">
 					<label for="inputTitle" class="col-sm-2 col-form-label">제목</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="inputTitle" name="cb_title" value="<%=chanban.getCb_title()%>" maxlength="100">
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<select class="form-control" id="inputCbtype" name="cb_type">
-						<option value="찬성" selected="selected">찬성</option>
-						<option value="반대">반대</option>
-					</select>
+				<div class="form-group row mb-3">
+					<label for="inputCbtype_chan" class="col-sm-2 col-form-label">찬반</label>					
+					<div class="custom-file col-sm-10">
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" id="inputCbtype_chan" name="cb_type" class="custom-control-input" value="찬성" <%if(chanban.getCb_type().equals("찬성")){out.print(" checked=\"checked\"");}%>>
+							<label class="custom-control-label" for="inputCbtype_chan">찬성</label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" id="inputCbtype_ban" name="cb_type" class="custom-control-input" value="반대" <%if(chanban.getCb_type().equals("반대")){out.print(" checked=\"checked\"");}%>>
+							<label class="custom-control-label" for="inputCbtype_ban">반대</label>
+						</div>
+					</div>
 				</div>
-				<div class="form-group row">
-					<label for="exampleTextarea" class="col-sm-2 col-form-label">내용</label>
+				
+				<div class="form-group row mb-3">
+					<label for="inputContent" class="col-sm-2 col-form-label">내용</label>
 					<div class="col-sm-10">
 						<textarea class="form-control summernote" id="inputContent" name="cb_content" rows="3"><%=chanban.getCb_content()%></textarea>
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label for="exampleInputFile" class="col-sm-2 col-form-label">첨부파일</label> 
-					<div class="col-sm-10">
-						<input type="file" class="form-control-file" id="inputFile" name="cb_file" aria-describedby="fileHelp" accept="image/*"> 
+				<div class="form-group row mb-3">
+					<label for="inputFile" class="col-sm-2 col-form-label">첨부파일</label>
+					<div class="custom-file col-sm-10">
+						<input type="file" class="custom-file-input" id="inputFile" name="cb_file" accept="image/*">
+						<label class="custom-file-label" for="customFile">파일 선택...</label>
 						<small id="fileHelp" class="form-text text-muted">이미지 파일만 첨부 가능합니다.</small>
 					</div>
-				</div>
+				</div>	
 		
 				<div class="form-group row text-right">
 					<div class="col-sm-12">
@@ -96,6 +109,9 @@
 <jsp:include page="/module/footer.jsp" flush="false" />
 
 <script>
+function search_movie() {
+	open('searchMovie.jsp', '영화 검색', 'height=800, width=600, menubar=no, scrollbars=no, toolbar=no, location=no, status=no, resizable=no');
+}
 $(document).ready(function() {
 	  $('.summernote').summernote({
 		  height:300

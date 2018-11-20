@@ -22,18 +22,16 @@
 		    <div class="section-heading dark text-center">
 		    	<span></span>
 				<h4>Cinema Map</h4>
+				<p>영화관 주변의 편의 시설들을 간편하게 찾아보세요.</p>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="container">
 	<div class="input-group mb-3">
-		<input class="form-control" type="text" name="searchTheater"
-			id="searchTheater" placeholder="원하시는 주변 장소를 입력하세요.   ex)왕십리 CGV"
-			style="padding-bottom: 10px">
+		<input class="form-control" type="text" name="searchTheater" id="searchTheater" placeholder="원하시는 주변 장소를 입력하세요.   ex)왕십리 CGV" style="padding-bottom: 10px" onkeypress="if(event.keyCode==13){searchTheateration(); return false;}">
 		<div class="input-group-append">
-			<button class="btn btn-outline-secondary"
-				onclick="searchTheateration();">검색</button>
+			<button class="btn btn-dark" onclick="searchTheateration();">검색</button>
 		</div>
 	</div>
 	<div class="map_wrap">
@@ -42,7 +40,7 @@
 		<ul id="category">
 			<li id="BK9" data-order="0"><span class="category_bg bank"></span>은행</li>
 			<li id="SW8" data-order="1"><span class="category_bg subway"></span>지하철</li>
-			<li id="PM9" data-order="2"><span class="category_bg pharmacy"></span>약국</li>
+			<li id="PK6" data-order="2"><span class="category_bg parking"></span>주차장</li>
 			<li id="FD6" data-order="3"><span
 				class="category_bg restaurant"></span> 음식점</li>
 			<li id="CE7" data-order="4"><span class="category_bg cafe"></span>카페</li>
@@ -205,7 +203,7 @@ function displayPlaces(places) {
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, order) {
-    var imageSrc = 'http://i63.tinypic.com/211nmnt.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+    var imageSrc = 'http://i68.tinypic.com/28l2q0.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
         imageSize = new daum.maps.Size(27, 28),  // 마커 이미지의 크기
         imgOptions =  {
             spriteSize : new daum.maps.Size(72, 208), // 스프라이트 이미지의 크기

@@ -82,6 +82,8 @@
 		String article_content = multi.getParameter("article_content");
 		float start_lat = Float.parseFloat(multi.getParameter("start_lat"));
 		float start_lon = Float.parseFloat(multi.getParameter("start_lon"));
+		String theater = multi.getParameter("theater");
+		String area = multi.getParameter("area");
 	
 		restaurant.setArticle_writer(article_writer);
 		restaurant.setArticle_title(article_title);
@@ -91,10 +93,12 @@
 		restaurant.setSearch_loc(search_loc);
 		restaurant.setStart_lat(start_lat);
 		restaurant.setStart_lon(start_lon);
+		restaurant.setTheater(theater);
+		restaurant.setArea(area);
 		
 		RestaurantDBBean restaurant_db = RestaurantDBBean.getInstance();
 		restaurant_db.insertArticle(restaurant);
-		response.sendRedirect("./cinema_restaurant.jsp");
+		response.sendRedirect("./cinema_restaurant.jsp?pageNum=1&theater=all");
 	} else if(board_id == 4) { //시사회
 		String preview_date = multi.getParameter("preview_date");
 		String cinema = multi.getParameter("cinema");

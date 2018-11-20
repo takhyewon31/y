@@ -287,9 +287,7 @@ public class FollowDBBean {
 				followingList = new ArrayList<FollowDataBean>();
 				do {
 					FollowDataBean following = new FollowDataBean();
-					following.setMem_id(rs.getString("mem_id"));
 					following.setTarget_mem_id(rs.getString("target_mem_id"));
-					following.setFol_type(rs.getString("fol_type"));
 
 					followingList.add(following);
 				} while (rs.next());

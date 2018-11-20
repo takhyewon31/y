@@ -16,7 +16,6 @@ public class CommentRestDBBean {
 		return instance;
 	}
 
-	// 커넥션풀로부터 Connection객체를 얻어냄
 	private Connection getConnection() throws Exception {
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");

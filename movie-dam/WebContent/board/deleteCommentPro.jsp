@@ -13,6 +13,7 @@
 	int cmt_id = Integer.parseInt(request.getParameter("cmt_id"));
 	int board_id = Integer.parseInt(request.getParameter("board_id"));
 	String category = request.getParameter("category")==null ? "" : request.getParameter("category");
+	String theater = request.getParameter("theater")==null ? "" : request.getParameter("theater");
 	String id = request.getParameter("userid");
 	int check = 0;
 	
@@ -30,7 +31,7 @@
 <%
 	if(category.equals("") || category == null) {
 %>
-	<meta http-equiv="Refresh" content="0;url=content_rest.jsp?article_id=<%=article_id%>&pageNum=<%=pageNum%>&board_id=<%=board_id%>">
+	<meta http-equiv="Refresh" content="0;url=content_rest.jsp?article_id=<%=article_id%>&pageNum=<%=pageNum%>&board_id=<%=board_id%>&theater=<%=theater%>">
 <%	} else { %>
 	<meta http-equiv="Refresh" content="0;url=content.jsp?article_id=<%=article_id%>&pageNum=<%=pageNum%>&board_id=<%=board_id%>&category=<%=category%>">
 <%  } %>

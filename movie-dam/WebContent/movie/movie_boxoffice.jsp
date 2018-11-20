@@ -31,7 +31,7 @@
         </div>
     </div>
 
-	<div class="row">
+	<div class="row mb-3 mr-2 d-flex justify-content-end">
 		<form action="./movie_boxoffice.jsp" onsubmit="return selectDate();">
 			<div class="form-group" id="selectTargetDate">
 				<div class="input-group input-group-alternative">
@@ -39,15 +39,15 @@
 						<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
 					</div>
 					<c:if test="<%=selectedDate == null %>">
-					<input class="form-control datepicker" name="targetDate" placeholder="Select date" type="text" value="오늘 날짜">
+					<input class="form-control datepicker" name="targetDate" placeholder="Select date" type="text" value="오늘 날짜" size="25">
 					</c:if>
 					<c:if test="<%=selectedDate != null %>">
-					<input class="form-control datepicker" name="targetDate" placeholder="Select date" type="text" value="<%=selectedDate%>">
+					<input class="form-control datepicker" name="targetDate" placeholder="Select date" type="text" value="<%=selectedDate%>" size="25">
 					</c:if>
+					<div class="input-group-append">
+				    	<button class="btn btn-dark" type="submit" id="button-addon2">찾기</button>
+				  	</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="btn btn-dark btn-sm">찾기</button> 
 			</div>
 		</form>
 	</div>

@@ -17,13 +17,14 @@
         int article_id = Integer.parseInt(request.getParameter("cmt_ref"));
     	String pageNum = request.getParameter("pageNum");
     	int board_id = Integer.parseInt(request.getParameter("board_id"));
+    	String theater = request.getParameter("theater");
     	
     	CommentRestDBBean cmt = CommentRestDBBean.getInstance();
     	cmt.insertComment(cmtdto);
     %>
 
 <head>
-<meta http-equiv="Refresh" content="0;url=content_rest.jsp?article_id=<%=article_id%>&pageNum=<%=pageNum%>&board_id=<%=board_id%>">
+<meta http-equiv="Refresh" content="0;url=content_rest.jsp?article_id=<%=article_id%>&pageNum=<%=pageNum%>&board_id=<%=board_id%>&theater=<%=theater%>">
 
 </head>
 <body>

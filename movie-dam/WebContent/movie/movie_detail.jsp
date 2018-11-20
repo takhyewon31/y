@@ -20,9 +20,6 @@
             <div class="col-12">
                 <div class="breadcumb-content">
                     <div class="map-ratings-review-area d-flex">
-                        <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        <a href="#" id="vote_average"></a>
-                        <a href="#">토론글 작성</a>
                     </div>
                 </div>
             </div>
@@ -36,233 +33,58 @@
 	<div class="container">
         <div class="row justify-content-center">
             <!-- Single Listing Content -->
-			<div class="col-12 col-lg-8">
+			<div class="col-12">
     			<div class="single-listing-content">
-			        <div class="listing-title">
-			            <h4 id="title"></h4>
-			            <h6 id="release_date"></h6>
-			        </div>
 			        <div class="single-listing-nav">
                         <nav>
                             <ul id="listingNav">
                                 <li class="active"><a href="#overview">기본 정보</a></li>
                                 <li><a href="#credit">출연·제작</a></li>
-                                <li><a href="https://peaceful-basin-13921.herokuapp.com/">예고편</a></li>
-                                <li><a href="#similar">관련 영화</a></li>
+                                <li><a href="#trailer">예고편</a></li>
+                                <li><a href="#similar" id="li_similar">유사한 영화</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="overview-content mt-50" id="overview">
-                    	<h6 id="tagline"></h6>
-	                    <p id="overview_text"></p>
-	                    <div class="row mt-5">
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Accepts Credit Cards</span>
-	                            </label>
-	                        </div>
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Bike Parking</span>
-	                            </label>
-	                        </div>
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Wireless Internet</span>
-	                            </label>
-	                        </div>
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Reservations</span>
-	                            </label>
-	                        </div>
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Privat Parking</span>
-	                            </label>
-	                        </div>
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Smoking Area</span>
-	                            </label>
-	                        </div>
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Wheelchair Accesible</span>
-	                            </label>
-	                        </div>
-	                        <div class="col-6">
-	                            <label class="custom-control custom-checkbox mb-3">
-	                                <input type="checkbox" class="custom-control-input">
-	                                <span class="custom-control-indicator"></span>
-	                                <span class="custom-control-description">Coupons</span>
-	                            </label>
-	                        </div>
-	                    </div>
+                    	<div class="row">
+	                    	<div class="col-sm-3" id="poster">
+	                    	</div>
+                         	<div class="col-sm-9">
+	                         	<h4 id="title"></h4>
+	                         	<h6 id="original_title" class="text-muted"></h6>
+	                   			<dl class="row">
+		                         	<dt class="col-sm-2 text-truncate">개봉일</dt>
+		                         	<dd class="col-sm-10" id="show_release_date"></dd>
+		                         	<dt class="col-sm-2 text-truncate">장르</dt>
+		                         	<dd class="col-sm-10" id="show_genres"></dd>
+		                         	<dt class="col-sm-2 text-truncate">러닝타임</dt>
+		                         	<dd class="col-sm-10" id="show_runtime"></dd>
+		                         	<dt class="col-sm-2 text-truncate">수익</dt>
+		                         	<dd class="col-sm-10" id="show_revenue"></dd>
+	                    		</dl>
+	                    		<h6><b id="tagline"></b></h6>
+	                    		<p id="overview_text"></p>
+                         	</div>
+                       	</div>
 	                </div>
 	                <div class="listing-reviews-area mt-100" id="credit">
 	                    <h4>출연·제작</h4>
-	                    <div class="row">
-		                    <div class="single-review-area col">
-		                        <div class="reviewer-meta d-flex align-items-center">
-		                            <img src="/movie-dam/assets/img/clients-img/1.jpg" alt="">
-		                            <div class="reviewer-content">
-		                                <div class="review-title-ratings d-flex justify-content-between">
-		                                    <h6>Michael Brown</h6>
-		                                </div>
-		                                <p> ipsum.gula non volutpat.</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <div class="single-review-area col">
-		                        <div class="reviewer-meta d-flex align-items-center">
-		                            <img src="/movie-dam/assets/img/clients-img/1.jpg" alt="">
-		                            <div class="reviewer-content">
-		                                <div class="review-title-ratings d-flex justify-content-between">
-		                                    <h6>Michael Brown</h6>
-		                                </div>
-		                                <p> ipsum.gula non volutpat.</p>
-		                            </div>
-		                        </div>
-		                    </div>
+	                    <div class="row" id="cast_crew"></div>	
+	                </div>
+	                <div class="listing-reviews-area mt-100" id="trailer">
+	                    <h4>예고편</h4>
+	                    <div class="embed-responsive embed-responsive-16by9">
+	                    	<iframe id="showVideo" class="embed-responsive-item" allowfullscreen></iframe>
 	                    </div>	
 	                </div>
 	                <div class="listing-menu-area mt-100" id="similar">
-	                    <h4>관련 영화</h4>
-	                    <!-- Single Listing Menu -->
-	                    <div class="single-listing-menu d-flex justify-content-between">
-	                        <!-- Listing Menu Title -->
-	                        <div class="listing-menu-title">
-	                            <h6>Classic Burger</h6>
-	                            <p>Beef, salad, mustard, bacon, mayonnaise, spicey relish, cheese</p>
-	                        </div>
-	                        <!-- Listing Menu Price -->
-	                        <div class="listing-menu-price">
-	                            <h6>$9,90</h6>
-	                        </div>
-	                    </div>
-	                    <!-- Single Listing Menu -->
-	                    <div class="single-listing-menu d-flex justify-content-between">
-	                        <!-- Listing Menu Title -->
-	                        <div class="listing-menu-title">
-	                            <h6>House Special Burger</h6>
-	                            <p>Beef, salad, mustard, bacon, mayonnaise, spicey relish, cheese</p>
-	                        </div>
-	                        <!-- Listing Menu Price -->
-	                        <div class="listing-menu-price">
-	                            <h6>$9,90</h6>
-	                        </div>
-	                    </div>
-	                    <!-- Single Listing Menu -->
-	                    <div class="single-listing-menu d-flex justify-content-between">
-	                        <!-- Listing Menu Title -->
-	                        <div class="listing-menu-title">
-	                            <h6>Classic Burger</h6>
-	                            <p>Beef, salad, mustard, bacon, mayonnaise, spicey relish, cheese</p>
-	                        </div>
-	                        <!-- Listing Menu Price -->
-	                        <div class="listing-menu-price">
-	                            <h6>$9,90</h6>
-	                        </div>
-	                    </div>
-	                    <!-- Single Listing Menu -->
-	                    <div class="single-listing-menu d-flex justify-content-between">
-	                        <!-- Listing Menu Title -->
-	                        <div class="listing-menu-title">
-	                            <h6>House Special Burger</h6>
-	                            <p>Beef, salad, mustard, bacon, mayonnaise, spicey relish, cheese</p>
-	                        </div>
-	                        <!-- Listing Menu Price -->
-	                        <div class="listing-menu-price">
-	                            <h6>$9,90</h6>
-	                        </div>
-	                    </div>
-	                    <a href="#" class="btn dorne-btn mt-50">+ 관련 영화 더 보기</a>
+	                    <h4>유사한 영화</h4>
+	                    <div class="row" id="similar_movie"></div>
 	                </div>
         		</div>
        		</div>
        		
-       		<!-- Listing Sidebar -->
-            <div class="col-12 col-md-8 col-lg-4">
-                <div class="listing-sidebar">
-
-                    <!-- Listing Verify -->
-                    <div class="listing-verify">
-                        <a href="#" class="btn dorne-btn w-100"><i class="fa fa-check pr-3"></i> Verified Listing</a>
-                    </div>
-
-                    <!-- Book A Table Widget -->
-                    <div class="book-a-table-widget mt-50">
-                        <h6>Book A Table</h6>
-                        <form action="#" method="get">
-                            <select class="custom-select" id="destinations">
-                            <option selected>Who will be arriving</option>
-                            <option value="1">New York</option>
-                            <option value="2">Latvia</option>
-                            <option value="3">Dhaka</option>
-                            <option value="4">Melbourne</option>
-                            <option value="5">London</option>
-                        </select>
-                            <select class="custom-select" id="catagories">
-                            <option selected>Guest 1</option>
-                            <option value="1">Guest 2</option>
-                            <option value="3">Guest 3</option>
-                            <option value="3">Guest 4</option>
-                        </select>
-                            <button type="submit" class="btn dorne-btn bg-white text-dark"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
-                        </form>
-                    </div>
-
-                    <!-- Opening Hours Widget -->
-                    <div class="opening-hours-widget mt-50">
-                        <h6>Opening Hours</h6>
-                        <ul class="opening-hours">
-                            <li>
-                                <p>Monday</p>
-                                <p>Closed</p>
-                            </li>
-                            <li>
-                                <p>Tuesday</p>
-                                <p>9 AM - 1 PM</p>
-                            </li>
-                            <li>
-                                <p>Wednesday</p>
-                                <p>9 AM - 1 PM</p>
-                            </li>
-                            <li>
-                                <p>Thursday</p>
-                                <p>9 AM - 1 PM</p>
-                            </li>
-                            <li>
-                                <p>Friday</p>
-                                <p>9 AM - 1 PM</p>
-                            </li>
-                            <li>
-                                <p>Saturday</p>
-                                <p>9 AM - 1 PM</p>
-                            </li>
-                            <li>
-                                <p>Sunday</p>
-                                <p>9 AM - 1 PM</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+       	
    		</div>
 	</div>
 </section>
@@ -272,6 +94,9 @@
 <jsp:include page="/module/footer.jsp" flush="false"/>
 
 <script>
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 var api_key = '<%=api_key%>';
 $(document).ready(function() {
 	var settings = {
@@ -288,17 +113,147 @@ $(document).ready(function() {
 	}
 	
 	$.ajax(settings).done(function (response) {
-		var rs = [];
 	 	console.log(response);
 	 	$('.breadcumb-area').attr('style', 'background-image: url(https://image.tmdb.org/t/p/original'+response["backdrop_path"]+');');
 	  	$('#vote_average').html(response['vote_average']);
-	 	$('#title').html(response['title']);
-	 	var releaes_year = new Date(response['release_date']).getFullYear();
-	  	$('#release_date').html(releaes_year+' · 국가명');
+	 	$('#title').html(response['title']+' <small class="text-muted">'+response['original_title']+'</small>');
+	  	$('#poster').html('<img src="https://image.tmdb.org/t/p/w500'+response["poster_path"]+'">');
 	  	$('#overview_text').html(response['overview']);
 	  	$('#tagline').html(response['tagline']);
-	  
-	 	$('#home').html(rs.join(''));
+	  	$('#show_release_date').html(response['release_date']);
+	  	for(var i=0; i<response['genres'].length; i++) {
+		  	$('#show_genres').append(response['genres'][i].name+' ');
+	  	}
+	  	$('#show_runtime').html(response['runtime']+'분');
+	  	$('#show_revenue').html(numberWithCommas(response['revenue'])+'원');
+
+	 	
+		$('#showVideo').attr('src', 'https://moviedam-stream.herokuapp.com/player/'+response['title']+'.mp4');
+	 	
+	 	var settings2 = {
+			async: true,
+			crossDomain: true,
+			url: 'https://api.themoviedb.org/3/movie/'+<%=id%>+'/credits',
+			method: 'GET',
+			headers: {},
+			data: {
+				'api_key': api_key
+			}
+		}
+	 	
+	 	$.ajax(settings2).done(function (response2) {
+			console.log(response2);
+			var rs = [];
+			if(response2['cast'].length<6) {
+				for(var i=0; i<response2['cast'].length; i++) {
+					rs.push('<div class="single-review-area col-md-4">');
+					rs.push('<div class="reviewer-meta d-flex align-items-center">');
+					if(response2['cast'][i]['profile_path'] == null) {
+						rs.push('<img src="https://via.placeholder.com/350x500?text=Dont+find+image" alt="Profile image">');
+					} else {
+						rs.push('<img src="https://image.tmdb.org/t/p/w185/'+response2['cast'][i]['profile_path']+'" alt="Profile image">');
+					}
+					rs.push('<div class="reviewer-content">');
+					rs.push('<div class="review-title-ratings d-flex justify-content-between"><h6>'+response2['cast'][i]['name']+'</h6></div>');
+					rs.push('<p>'+response2['cast'][i]['character']+'</p></div></div></div>');
+				}		
+			} else {
+				for(var i=0; i<6; i++) {
+					rs.push('<div class="single-review-area col-md-4">');
+					rs.push('<div class="reviewer-meta d-flex align-items-center">');
+					if(response2['cast'][i]['profile_path'] == null) {
+						rs.push('<img src="https://via.placeholder.com/350x500?text=Dont+find+image" alt="Profile image">');
+					} else {
+						rs.push('<img src="https://image.tmdb.org/t/p/w185/'+response2['cast'][i]['profile_path']+'" alt="Profile image">');
+					}
+					rs.push('<div class="reviewer-content">');
+					rs.push('<div class="review-title-ratings d-flex justify-content-between"><h6>'+response2['cast'][i]['name']+'</h6></div>');
+					rs.push('<p>'+response2['cast'][i]['character']+'</p></div></div></div>');
+				}			 	
+			}
+			if(response2['crew'].length<6) {
+				for(var i=0; i<response2['crew'].length; i++) {
+					rs.push('<div class="single-review-area col-md-4">');
+					rs.push('<div class="reviewer-meta d-flex align-items-center">');
+					if(response2['crew'][i]['profile_path'] == null) {
+						rs.push('<img src="https://via.placeholder.com/350x500?text=Dont+find+image" alt="Profile image">');
+					} else {
+						rs.push('<img src="https://image.tmdb.org/t/p/w185/'+response2['crew'][i]['profile_path']+'" alt="Profile image">');
+					}
+					rs.push('<div class="reviewer-content">');
+					rs.push('<div class="review-title-ratings d-flex justify-content-between"><h6>'+response2['crew'][i]['name']+'</h6></div>');
+					rs.push('<p>'+response2['crew'][i]['job']+'</p></div></div></div>');
+				}
+			} else {
+				for(var i=0; i<6; i++) {
+					rs.push('<div class="single-review-area col-md-4">');
+					rs.push('<div class="reviewer-meta d-flex align-items-center">');
+					if(response2['crew'][i]['profile_path'] == null) {
+						rs.push('<img src="https://via.placeholder.com/350x500?text=Dont+find+image" alt="Profile image">');
+					} else {
+						rs.push('<img src="https://image.tmdb.org/t/p/w185/'+response2['crew'][i]['profile_path']+'" alt="Profile image">');
+					}
+					rs.push('<div class="reviewer-content">');
+					rs.push('<div class="review-title-ratings d-flex justify-content-between"><h6>'+response2['crew'][i]['name']+'</h6></div>');
+					rs.push('<p>'+response2['crew'][i]['job']+'</p></div></div></div>');
+				}
+			}
+			$('#cast_crew').html(rs.join(''));
+			
+			var settings3 = {
+			  async: true,
+			  crossDomain: true,
+			  url: 'https://api.themoviedb.org/3/movie/'+<%=id%>+'/similar',
+			  method: 'GET',
+			  headers: {},
+			  data: {
+				  'page': 1,
+				  'language': 'ko-KR',
+				  'api_key': api_key
+			  }
+			}
+
+			$.ajax(settings3).done(function (response3) {
+				console.log(response3);
+				var rs2 = [];
+				if(response3.total_results == 0) {
+					$('#similar').css('display', 'none');
+					$('#li_similar').css('display', 'none');
+				} else {
+					if(response3.total_result <= 5) {
+						for(var i=0; i<response3.total_result; i++) {
+							rs2.push('<div class="single-listing-menu d-flex justify-content-between">');
+							rs2.push('<div class="reviewer-meta d-flex align-items-center">');
+							rs2.push('<img src="https://image.tmdb.org/t/p/w185/'+response3['results'][i]['poster_path']+'" alt="Poster image">');
+							rs2.push('<div class="listing-menu-title">');
+							rs2.push('<h6><a href="movie_detail.jsp?id='+response3['results'][i]['id']+'">'+response3['results'][i]['title']+'</a></h6>');
+							if(response3['results'][i]['overview'] == "" || response3['results'][i]['overview'].length == 0) {
+								rs2.push('<p style="display: inline-block; whith-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; height: 5.2em;">줄거리가 없습니다.</p>');
+							} else {
+								rs2.push('<p style="display: inline-block; whith-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; height: 5.2em;">'+response3['results'][i]['overview']+'</p>');
+							}
+							rs2.push('</div></div></div>');
+						}
+					} else {
+						for(var i=0; i<5; i++) {
+							rs2.push('<div class="single-listing-menu d-flex justify-content-between">');
+							rs2.push('<div class="reviewer-meta d-flex align-items-center">');
+							rs2.push('<img src="https://image.tmdb.org/t/p/w185/'+response3['results'][i]['poster_path']+'" alt="Poster image">');
+							rs2.push('<div class="listing-menu-title">');
+							rs2.push('<h6><a href="movie_detail.jsp?id='+response3['results'][i]['id']+'">'+response3['results'][i]['title']+'</a></h6>');
+							if(response3['results'][i]['overview'] == "" || response3['results'][i]['overview'].length == 0) {
+								rs2.push('<p style="display: inline-block; whith-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; height: 5.2em;">줄거리가 없습니다.</p>');
+							} else {
+								rs2.push('<p style="display: inline-block; whith-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; height: 5.2em;">'+response3['results'][i]['overview']+'</p>');
+							}
+							rs2.push('</div></div></div>');
+						}
+					}
+				}
+				$('#similar_movie').html(rs2.join(''));
+			});
+ 		});
+
 	});	
 });
 </script>

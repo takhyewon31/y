@@ -20,8 +20,7 @@
 <%
 	int pageSize = 10;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-%>
-<%
+	
 	if (pageNum == null) {
 		pageNum = "1";
 	}
@@ -31,6 +30,8 @@
 	int endRow = currentPage * pageSize;
 	int count = 0;
 	int ccount = 0;
+	int procount = 0;
+	int concount = 0;
 	int number = 0;
 	int total_page = 0;
 	String content = "";
@@ -56,12 +57,8 @@
 
 <jsp:include page="/module/nav.jsp" flush="false" />
 
-<!-- ***** Breadcumb Area Start ***** -->
-<div class="breadcumb-area bg-img bg-overlay"
-	style="background-image: url(/movie-dam/assets/img/bg-img/hero-1.jpg)"></div>
-<!-- ***** Breadcumb Area End ***** -->
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/movie-dam/assets/img/bg-img/hero-1.jpg)"></div>
 
-<!-- ***** Listing Destinations Area Start ***** -->
 <section class="dorne-listing-destinations-area section-padding-100-50">
 	<div class="container">
 		<div class="row">
@@ -69,13 +66,12 @@
 				<div class="section-heading dark text-center">
 					<h4>Pro and con debate</h4>
 					<p>영화를 주제로 한 다양한 찬반 토론 <%=count%>개가 진행중입니다.</p><br>
-					<button class="btn btn-sm btn-outline-secondary" onclick="document.location.href='chanban_writeForm.jsp?cb_writer=${sessionScope.userid}'">글쓰기</button>
 				</div>
 			</div>
 		</div>
 		
-		<div class="row justify-content-center">
-			<div class="col-10">
+		<div class="row mb-3 mr-2 justify-content-center">
+			<div class="col-12">
 				<form>
 					<div class="form-group">
 						<div class="input-group mb-3">
@@ -89,7 +85,7 @@
 							</div>
 							<input class="form-control" type="text" name="search" placeholder="관심있는 토론 주제를 검색해 보세요.">
 							<div class="input-group-append">
-								<input class="btn btn-outline-secondary" type="submit" value="검색">
+								<input class="btn btn-dark" type="submit" value="검색">
 							</div>
 						</div>
 					</div>
@@ -98,20 +94,18 @@
 		</div>
 		<br>
 		
-
-		
+		<div class="container">
 <%
 			if (count == 0) {
 %>
-		<div class="alert alert-danger" role="alert">게시판에 저장된 글이 없습니다.</div>
+			<div class="alert alert-danger" role="alert">게시판에 저장된 글이 없습니다.</div>
 
 <%
-			} else {
+			} else {		
 %>
-		<div class="container">
 			<div class="row justify-content-center">
 				<!-- Single Features Area -->
-				<div class="col-10">
+				<div class="col-12">
 <%
 						int a = count / pageSize + (count % pageSize == 0 ? 0 : 1); //전체페이지 수 
 							if (Integer.parseInt(pageNum) > a) {
@@ -122,30 +116,39 @@
 							
 							for (int i = 0; i < chanbanList.size(); i++) {
 								ChanbanDataBean chanban = chanbanList.get(i);
-								String textWithoutTag = chanban.getCb_content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");					
+								String textWithoutTag = chanban.getCb_content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");		
+								String cb_tag = chanban.getCb_tag();
+								pageContext.setAttribute("cb_tag", cb_tag);
 								
 								ccount = cb_comment_db.getChanbanCmtCount(chanban.getCb_id());
+								procount = cb_comment_db.getChanbanProCount(chanban.getCb_id());
+								concount = cb_comment_db.getChanbanConCount(chanban.getCb_id());
 %>	
 					<ul class="list-unstyled">
 						<li class="media">
-							<img class="mr-3" src="https://via.placeholder.com/128x128" alt="Generic placeholder image">
+<% 
+						if (chanban.getCb_file() != null) {
+%>
+							<img class="mr-3" src="/movie-dam/imageFolder/debate_chanban/<%=chanban.getCb_file()%>" width="128" height="128" alt="Generic placeholder image">
+<%						} else { %>
+							<img class="mr-3" src="https://via.placeholder.com/128x128?text=Image+doesn't+exist." alt="Generic placeholder image">
+<%						} %>
 							<div class="media-body">
 								<h5 class="mt-0 mb-1">
 									<a href="chanban_content.jsp?cb_id=<%=chanban.getCb_id()%>&pageNum=<%=currentPage%>" style="color: black;"><%=chanban.getCb_title()%></a>
-									<% if (chanban.getCb_hits() <= 20) {%><span class="badge badge-info">H</span><%}%>
 								</h5>
 								
-								<div><%=textWithoutTag %></div>
-								<div class="hashtag">
-									<a type="buttn" class="btn btn-outline-primary btn-sm">#캡틴아메리카</a>
-									<a type="buttn" class="btn btn-outline-primary btn-sm">#공리주의</a>
-									<a type="buttn" class="btn btn-outline-primary btn-sm">#권력</a> 
-									<a type="buttn" class="btn btn-outline-primary btn-sm">#영웅</a>
+								<div style="display: inline-block; whith-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; height: 5.2em;"><%=textWithoutTag %></div>
+								<div class="hashtag mb-3">
+									<c:set var="tags" value="${fn:split(cb_tag, '|')}"></c:set>
+									<c:forEach var="item" items="${tags}">
+									    <a href="#" class="badge badge-primary">#${item}</a>
+									</c:forEach>
 								</div>
 								<div class="pro-con-icon">
-									<span id="pros"><i class="fas fa-thumbs-up fa-sm"></i> 찬성 </span> 
-									<span id="cons"><i class="fas fa-thumbs-down fa-sm"></i> 반대 </span> 
-									<span id="opinion"><i class="fas fa-comments fa-sm"></i> 의견 </span>
+									<span id="pros" ><i class="fas fa-thumbs-up fa-sm" style="color:#4374D9;"></i> 찬성 <%=procount %>&nbsp;&nbsp;</span> 
+									<span id="cons"><i class="fas fa-thumbs-down fa-sm" style="color:#DF4D4D;"></i> 반대 <%=concount %>&nbsp;&nbsp;</span> 
+									<span id="opinion"><i class="fas fa-comments fa-sm"></i> 의견 <%=ccount %></span>
 								</div>
 							</div>
 						</li>
@@ -158,8 +161,10 @@
 				</div>
 			</div>
 			
-		</div>
 		
+		<div class="form-group row d-flex justify-content-end">
+			<button class="btn btn-dark" onclick="document.location.href='chanban_writeForm.jsp?cb_writer=${sessionScope.userid}'">글쓰기</button>
+		</div>
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-center">
 <%
@@ -188,7 +193,7 @@
 	
 						if (startPage > 10) {
 %>
-				<li class="page-item"><a class="page-link" href="free_board.jsp?pageNum=<%=startPage - 10%>">이전</a></li>
+				<li class="page-item"><a class="page-link" href="debate_chanban.jsp?pageNum=<%=startPage - 10%>">이전</a></li>
 <%
 					}
 					
@@ -196,38 +201,36 @@
 						if (i == currentPage) {
 %>
 				<li class="page-item active">
-					<a class="page-link" href="free_board.jsp?pageNum=<%=i%>"><%=i%><span class="sr-only">(current)</span></a>
+					<a class="page-link" href="debate_chanban.jsp?pageNum=<%=i%>"><%=i%><span class="sr-only">(current)</span></a>
 				</li>
 <%
 						} else {
 %>
-				<li class="page-item"><a class="page-link" href="free_board.jsp?pageNum=<%=i%>"><%=i%></a></li>
+				<li class="page-item"><a class="page-link" href="debate_chanban.jsp?pageNum=<%=i%>"><%=i%></a></li>
 <%
 						}
 					}
 					
 					if (endPage < pageCount) {
 %>
-				<li class="page-item"><a class="page-link" href="free_board.jsp?pageNum=<%=startPage + 10%>">다음</a></li>
+				<li class="page-item"><a class="page-link" href="debate_chanban.jsp?pageNum=<%=startPage + 10%>">다음</a></li>
 <%
 					}
-							}
-						}
+				}
 %>
+		
 			</ul>
 		</nav>
 <%
-			} catch (Exception e) {
-			}
-	
+			}	
 %>
+</div>
+	
+<% } catch (Exception e) { } %>
 	</div>
 </section>
-<!-- ***** Listing Destinations Area End ***** -->
-
 
 <jsp:include page="/module/footer.jsp" flush="false" />
-
 
 </body>
 </html>

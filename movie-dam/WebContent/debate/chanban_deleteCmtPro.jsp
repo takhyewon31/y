@@ -1,25 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import = "moviedam.board.CommentDBBean" %>
+<%@ page import="moviedam.debate.ChanbanCommentDBBean"%>
 <%@ page import = "java.sql.Timestamp" %>
 
 <% request.setCharacterEncoding("utf-8");%>
 
 
 <% 
-	String pageNum = request.getParameter("pageNum");
-	
-	int article_id = Integer.parseInt(request.getParameter("cmt_ref"));
-	int cmt_id = Integer.parseInt(request.getParameter("cmt_id"));
-	int board_id = Integer.parseInt(request.getParameter("board_id"));
-	String category = request.getParameter("category");
-	String id = request.getParameter("userid");
-	
-	CommentDBBean dbPro = CommentDBBean.getInstance(); 
-	int check = dbPro.deleteComment(cmt_id, id);
+String pageNum = request.getParameter("pageNum");
+
+int cb_id = Integer.parseInt(request.getParameter("cb_cmt_ref"));
+int cb_cmt_id = Integer.parseInt(request.getParameter("cb_cmt_id"));
+String id = request.getParameter("userid");
+
+ChanbanCommentDBBean dbPro = ChanbanCommentDBBean.getInstance(); 
+int check = dbPro.deleteChanbanCmt(cb_cmt_id, id);
 	
 %>
 <head>
-	<meta http-equiv="Refresh" content="0;url=content.jsp?article_id=<%=article_id%>&pageNum=<%=pageNum%>&board_id=<%=board_id%>&category=<%=category%>">
+	<meta http-equiv="Refresh" content="0;url=chanban_content.jsp?cb_id=<%=cb_id%>&pageNum=<%=pageNum%>">
 </head>
 <body>
 

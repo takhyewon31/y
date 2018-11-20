@@ -28,7 +28,6 @@ public class ArticleDBBean {
 		return ds.getConnection();
 	}
 
-	// board테이블에 글을 추가(insert문)<=writePro.jsp페이지에서 사용
 	public void insertArticle(ArticleDataBean article) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -72,7 +71,6 @@ public class ArticleDBBean {
 		}
 	}
 	
-	// board테이블에 저장된 전체글의 수를 얻어냄(select문)<=list.jsp에서 사용
 	public int getArticleCount(String option, String search, String category) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -197,7 +195,6 @@ public class ArticleDBBean {
 		return x;
 	}
 	
-	// 글의 목록을 가져옴
 	public List<ArticleDataBean> getArticles(int start, int end, String option, String search, String category) throws Exception {
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -427,7 +424,7 @@ public class ArticleDBBean {
 		try {
 			conn = getConnection();
 
-			String sql = "select * from article order by article_hits desc LIMIT 0, 10 ";
+			String sql = "select * from article order by article_hits desc LIMIT 0, 8 ";
 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -466,7 +463,6 @@ public class ArticleDBBean {
 		return articleList;
 	}
 
-	// 글의 내용을 보기(1개의 글)(select문)<=content.jsp페이지에서 사용
 	public ArticleDataBean getArticle(int article_id) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -517,7 +513,6 @@ public class ArticleDBBean {
 		return article;
 	}
 
-	// 글 수정폼에서 사용할 글의 내용(1개의 글)(select문)<=updateForm.jsp에서 사용
 	public ArticleDataBean updateGetArticle(int article_id) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -564,7 +559,6 @@ public class ArticleDBBean {
 		return article;
 	}
 	
-	//글 수정처리에서 사용(update문)<=updatePro.jsp에서 사용
 	public int updateArticle(ArticleDataBean article,String mem_nickname) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -617,7 +611,6 @@ public class ArticleDBBean {
 		return x;
 	    }
 	
-	// 글삭제처리시 사용(delete문)<=deletePro.jsp페이지에서 사용
 	public int deleteArticle(int article_id, String mem_nickname) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

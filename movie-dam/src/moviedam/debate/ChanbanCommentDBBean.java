@@ -17,7 +17,6 @@ public class ChanbanCommentDBBean {
 		return instance;
 	}
 
-	// 커넥션풀로부터 Connection객체를 얻어냄
 	private Connection getConnection() throws Exception {
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");
@@ -136,6 +135,86 @@ public class ChanbanCommentDBBean {
 		return x;
 	}
 
+	public int getChanbanProCount(int cb_cmt_ref) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+
+		int x = 0;
+		try {
+			conn = getConnection();
+
+			sql = "select count(*) from cb_comment where cb_cmt_ref=? and cb_cmt_type='찬성' and cb_cmt_step =0";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cb_cmt_ref);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return x;
+	}
+	
+	public int getChanbanConCount(int cb_cmt_ref) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+
+		int x = 0;
+		try {
+			conn = getConnection();
+
+			sql = "select count(*) from cb_comment where cb_cmt_ref=? and cb_cmt_type='반대' and cb_cmt_step =0";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cb_cmt_ref);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return x;
+	}
+	
 	public ArrayList<ChanbanCommentDataBean> getChanbanCmts(int cb_cmt_ref) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -272,7 +351,7 @@ public class ChanbanCommentDBBean {
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("select * from cb_comment where cmt_id=?");
+			pstmt = conn.prepareStatement("select * from cb_comment where cb_cmt_id=?");
 			pstmt.setInt(1, comment.getCb_cmt_id());
 			rs = pstmt.executeQuery();
 

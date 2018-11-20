@@ -14,6 +14,7 @@
 	String fol_type = "";
 	int follower_cnt = 0;
 	int following_cnt = 0;
+	int like_cnt = 0;
 	String birth = "";
 	
 	try{
@@ -69,11 +70,11 @@
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
                   	<a href="#" class="btn btn-sm btn-default float-right">Message</a>
-                <% if(profile.getMem_userid().equals(userid)) { %>
+               	 	<% if(profile.getMem_userid().equals(userid)) { %>
                 	<a href="profile_setting.jsp" class="btn btn-sm btn-info mr-4" id="setProfile" data-toggle="tooltip" data-placement="bottom" title="프로필 설정">Setting</a>
-                <% } else { %>
+                	<% } else { %>
                 	<form id="followForm" method="post"></form>
-                <% } %>
+                	<% } %>
                 </div>
               </div>
               <div class="col-lg-4 order-lg-1">
@@ -103,17 +104,48 @@
               <h3><a href="profile.jsp?mem_userid=<%=mem_userid%>"><%=profile.getMem_nickname() %></a>
                 <span class="font-weight-light" id="birth"></span>
               </h3>
-              <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i><%=profile.getMem_email() %></div>
+              <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>자기소개가 없습니다.</div>
             </div>
             <div class="mt-5 py-5 border-top text-center">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
-					<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
-						<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="tabs-text-1" aria-selected="true">프로필</a></li>
-						<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tendency" role="tab" aria-controls="tabs-text-2" aria-selected="false">성향</a></li>
-						<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" data-toggle="tab" href="#activiry" role="tab" aria-controls="tabs-text-3" aria-selected="false">활동</a></li>
-					</ul>
-					
+                	<div class="nav-wrapper">
+						<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+							<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#profile" role="tab" aria-selected="true">프로필</a></li>
+							<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tendency" role="tab" aria-selected="false">성향</a></li>
+							<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" data-toggle="tab" href="#activiry" role="tab" aria-selected="false">활동</a></li>
+						</ul>
+					</div>
+					<div class="card">
+					    <div class="card-body">
+					        <div class="tab-content" id="myTabContent">
+					            <div class="tab-pane fade show active" id="profile" role="tabpanel">
+					                <dl class="row">
+						                <dt class="col-sm-4">이름</dt>
+						                <dd class="col-sm-8 text-left"><%=profile.getMem_name() %></dd>
+						                <dt class="col-sm-4">이메일</dt>
+						                <dd class="col-sm-8 text-left"><%=profile.getMem_email() %></dd>
+						                <dt class="col-sm-4">생년월일</dt>
+						                <dd class="col-sm-8 text-left"><%=profile.getMem_birth() %></dd>
+						                <dt class="col-sm-4">성별</dt>
+						                <dd class="col-sm-8 text-left">
+						                <% if(profile.getMem_gender() == 0) { %>남성
+						                <% } else { %>여성
+						                <% } %>
+						                </dd>
+						                <dt class="col-sm-4">가입일</dt>
+						                <dd class="col-sm-8 text-left"><%=profile.getJoin_date() %></dd>
+					              	</dl>
+					            </div>
+					            <div class="tab-pane fade" id="tendency" role="tabpanel">
+					                <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+					            </div>
+					            <div class="tab-pane fade" id="activiry" role="tabpanel">
+					                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+					            </div>
+					        </div>
+					    </div>
+					</div>
 				</div>
 				
 				<div class="col-lg-9">

@@ -13,6 +13,8 @@ public class RestaurantDataBean {
 	private String search_loc;
 	private float start_lat;
 	private float start_lon;
+    private String theater;
+	private String area;
 	
 	public int getArticle_id() {
 		return article_id;
@@ -79,6 +81,18 @@ public class RestaurantDataBean {
 	}
 	public void setStart_lon(float start_lon) {
 		this.start_lon = start_lon;
+	}
+	public String getTheater() {
+		return theater;
+	}
+	public void setTheater(String theater) {
+		this.theater = theater;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
 	}
 	
 }

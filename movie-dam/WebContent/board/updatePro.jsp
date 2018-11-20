@@ -93,20 +93,25 @@
 		String article_content = multi.getParameter("article_content");
 		float start_lat = Float.parseFloat(multi.getParameter("start_lat"));
 		float start_lon = Float.parseFloat(multi.getParameter("start_lon"));
+		String theater = multi.getParameter("theater");
+		String area = multi.getParameter("area");
 		
 		restaurant.setArticle_writer(article_writer);
 		restaurant.setArticle_title(article_title);
 		restaurant.setArticle_content(article_content);
+		restaurant.setArticle_file(fileName);
 		restaurant.setReg_date(reg_date);
 		restaurant.setSearch_loc(search_loc);
 		restaurant.setStart_lat(start_lat);
 		restaurant.setStart_lon(start_lon);
+		restaurant.setTheater(theater);
+		restaurant.setArea(area);
 		
 		RestaurantDBBean restaurant_db = RestaurantDBBean.getInstance();
 		int check = restaurant_db.updateArticle(restaurant, userid);
 		if(check==1){
 %>
-			<meta http-equiv="Refresh" content="0;url=content_rest.jsp?board_id=<%=board_id %>&article_id=<%=article.getArticle_id()%>&pageNum=<%=currentPage%>" >
+			<meta http-equiv="Refresh" content="0;url=content_rest.jsp?board_id=<%=board_id %>&article_id=<%=article.getArticle_id()%>&pageNum=<%=currentPage%>&theater=<%=theater%>" >
 <% 		} else { %>
 			<script>   
 				alert("작성자만 수정할 수 있습니다.");

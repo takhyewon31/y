@@ -42,17 +42,17 @@
         </div>
     </div>	
 
-	<div class="row">
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownGenre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<div class="row mb-3 mr-2 d-flex justify-content-end">
+		<div class="dropdown mb-4">
+			<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownGenre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    	장르
 			</button>
 	  		<div class="dropdown-menu" aria-labelledby="dropdownGenre" id="dropdownGenreList">
 	  		</div>
 		</div>
 		
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		<div class="dropdown mb-4">
+			<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				정렬
 		  	</button>
 		  	<div class="dropdown-menu" aria-labelledby="dropdownSort">
@@ -68,20 +68,17 @@
 	</div>
 
 	<!-- Pagination -->
-	<div>
-		<ul class="pagination">
-			<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a>
-			</li>
-			<li class="page-item active"><a class="page-link" href="movie_list.jsp?resultPage=1&sort=<%=sort%>&with_genres=<%=with_genres%>">1</a>
-			</li>
+	<nav aria-label="Page navigation">
+		<ul class="pagination justify-content-center">
+			<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+			<li class="page-item active"><a class="page-link" href="movie_list.jsp?resultPage=1&sort=<%=sort%>&with_genres=<%=with_genres%>">1</a></li>
 			<li class="page-item"><a class="page-link" href="movie_list.jsp?resultPage=2&sort=<%=sort%>&with_genres=<%=with_genres%>">2</a></li>
 			<li class="page-item"><a class="page-link" href="movie_list.jsp?resultPage=3&sort=<%=sort%>&with_genres=<%=with_genres%>">3</a></li>
 			<li class="page-item"><a class="page-link" href="movie_list.jsp?resultPage=4&sort=<%=sort%>&with_genres=<%=with_genres%>">4</a></li>
 			<li class="page-item"><a class="page-link" href="movie_list.jsp?resultPage=5&sort=<%=sort%>&with_genres=<%=with_genres%>">5</a></li>
-			<li class="page-item"><a class="page-link" href="#">&raquo;</a>
-			</li>
+			<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
 		</ul>
-	</div>
+	</nav>
 </div>
 </section>
 
@@ -94,7 +91,6 @@ var sort = '<%=sort%>';
 var genre = '<%=with_genres%>';
 var api_key = '<%=api_key%>';
 var response2 = [];
-
 
 $(document).ready(function() {
 	var rs = [];

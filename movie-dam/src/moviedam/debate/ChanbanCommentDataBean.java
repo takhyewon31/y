@@ -3,13 +3,13 @@ import java.sql.Timestamp;
 
 public class ChanbanCommentDataBean {
 	private int cb_cmt_id;
-	private String cb_cmt_writer;//댓글 작성자
-	private String cb_cmt_content;//댓글 내용
-	private Timestamp cb_cmt_date;//댓글 작성일
-	private int cb_cmt_ref;//부모 게시글
-	private int cb_cmt_group;//댓글그룹(대댓글사용)
-	private int cb_cmt_step; //댓글 순서
-	private int cb_cmt_level; //글의 레벨
+	private String cb_cmt_writer;
+	private String cb_cmt_content;
+	private Timestamp cb_cmt_date;
+	private int cb_cmt_ref;
+	private int cb_cmt_group;
+	private int cb_cmt_step; 
+	private int cb_cmt_level; 
 	private String cb_cmt_type;
 	
 	public int getCb_cmt_id() {

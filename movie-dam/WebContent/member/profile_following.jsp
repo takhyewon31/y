@@ -1,161 +1,227 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="moviedam.member.MemberDBBean" %>
+<%@ page import="moviedam.member.MemberDataBean" %>
+<%@ page import="moviedam.member.FollowDBBean" %>
+<%@ page import="moviedam.member.FollowDataBean" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	String title = "ㅇㅇㅇ님의 프로필";
+	String userid = (String)session.getAttribute("userid");
+	String mem_userid = request.getParameter("mem_userid");
+	String fol_type = "";
+	int follower_cnt = 0;
+	int following_cnt = 0;
+	String birth = "";
+	
+	try{
+		MemberDBBean mem_db = MemberDBBean.getInstance(); 
+		MemberDataBean user_profile = mem_db.getProfile(mem_userid);
+		
+		FollowDBBean fol_db = FollowDBBean.getInstance(); 
+		ArrayList<FollowDataBean> followingList = null;
+		followingList = fol_db.getFollowings(mem_userid);
+		follower_cnt = fol_db.getFollowerCount(mem_userid);
+		following_cnt = fol_db.getFollowingCount(mem_userid);
+		
+		String title = user_profile.getMem_nickname()+"님의 프로필";
+		birth = user_profile.getMem_birth();
 %>
-
 <jsp:include page="/module/header.jsp" flush="false">
 	<jsp:param name="title" value="<%=title%>" />
 </jsp:include>
 
 <jsp:include page="/module/nav.jsp" flush="false" />
 
-<div id="main">
+<main class="profile-page">
+<section class="section-profile-cover section-shaped my-0">
+	<!-- Circles background -->
+	<div class="shape shape-style-1 shape-primary alpha-4">
+		<span></span> <span></span> <span></span> <span></span> <span></span>
+		<span></span> <span></span>
+	</div>
+	<!-- SVG separator -->
+	<div class="separator separator-bottom separator-skew">
+		<svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			<polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+	</div>
+</section>
+<section class="section">
 	<div class="container">
-		<div class="row">
-
-			<!-- About Me (Left Sidebar) Start -->
-			<div class="col-md-3">
-				<div class="about-fixed">
-
-					<div class="my-pic">
-						<img src="/movie-dam/assets/images/pic/my-pic.png" alt="">
-						<a href="javascript:void(0)" class="collapsed" data-target="#menu" data-toggle="collapse"><i class="icon-menu menu"></i></a>
-
-						<div id="menu" class="collapse">
-							<ul class="menu-link">
-								<li><a href="#">프로필</a></li>
-								<li><a href="#">활동</a></li>
-								<li><a href="#">메시지</a></li>
-								<li><a href="#">설정</a></li>
-							</ul>
+		<div class="card card-profile shadow mt--300">
+			<div class="px-4">
+				<div class="row justify-content-center">
+					<div class="col-lg-3 order-lg-2">
+						<div class="card-profile-image">
+							<a href="#"> 
+								<img src="/movie-dam/assets/img/profile-img/<%=user_profile.getMem_img()%>" width="800" height="800" class="rounded-circle">
+							</a>
 						</div>
 					</div>
-					<div class="my-detail">
-						<div class="white-spacing">
-							<h1>Nick Name</h1>
-							<h5>
-								<a href="./profile_follower.jsp">팔로워 00명</a>&nbsp;/&nbsp;
-								<a href="./profile_following.jsp">팔로잉 00명</a>
-							</h5>
-							<span><a class="btn btn-default" href="#" role="button">팔로우</a></span> 
-							<span><a class="btn btn-default" href="#" role="button">팔로우 해제</a></span> 
+					<div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+						<div class="card-profile-actions py-4 mt-lg-0">
+							<a href="#" class="btn btn-sm btn-default float-right">Message</a>
+							<% if (user_profile.getMem_userid().equals(userid)) { %>
+							<a href="profile_setting.jsp" class="btn btn-sm btn-info mr-4" id="setProfile" data-toggle="tooltip" data-placement="bottom" title="프로필 설정">Setting</a>
+							<% } else { %>
+							<form id="followForm" method="post"></form>
+							<% } %>
 						</div>
-						<ul class="social-icon">
-							<li><a href="#" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
-						</ul>
 					</div>
-				</div>
-			</div>
-			<!-- About Me (Left Sidebar) End -->
-
-
-			<!-- Blog Post (Right Sidebar) Start -->
-			<div class="col-md-9">
-				<div class="col-md-12 page-body">
-					<div class="row">
-						<div class="sub-title">
-							<nav class="navbar">
-							
-								<!-- Collect the nav links, forms, and other content for toggling -->
-								<div class="collapse navbar-collapse"
-									id="bs-example-navbar-collapse-1">
-									<ul class="nav navbar-nav">
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false">프로필<span
-												class="caret"></span></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="profile_profile.html">보기</a></li>
-												<li><a href="profile_edit.html">편집</a></li>
-											</ul></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false">활동<span
-												class="caret"></span></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="active_individual.html">개인</a></li>
-												<li><a href="active_like.html">좋아요</a></li>
-												<li><a href="active_friend.html">친구</a></li>
-											</ul></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false">메시지<span
-												class="caret"></span></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="./message_received.jsp">받은 메시지</a></li>
-												<li><a href="./message_send.jsp">메시지 보내기</a></li>
-											</ul></li>
-										<li class="nav"><a href="setting.html" role="button"
-											aria-expanded="false">설정</a></li>
-									</ul>
-								</div>
-								<!-- /.navbar-collapse -->
-							</nav>
-						</div>
-						<!-- /.container-fluid -->
-
-
-						<div class="col-md-12 content-page">
-							<ul class="nav nav-tabs nav-justified">
-								<li role="presentation"><a href="./profile_follower.jsp">팔로워</a></li>
-								<li role="presentation" class="active"><a href="./profile_following.jsp">팔로잉</a></li>
-							</ul>
-
-							<!-- Default panel contents -->
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="thumbnail">
-										<img src="/movie-dam/assets/images/pic/my-pic.png">
-										<div class="caption">
-											<h3>Nickname</h3>
-											<p>친구설명</p>
-											<p>
-												<a href="#" class="btn btn-default" role="button">언팔로우</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-6 col-md-4">
-									<div class="thumbnail">
-										<img src="/movie-dam/assets/images/pic/my-pic.png">
-										<div class="caption">
-											<h3>Nickname</h3>
-											<p>친구설명</p>
-											<p>
-												<a href="#" class="btn btn-default" role="button">언팔로우</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-4">
-									<div class="thumbnail">
-										<img src="/movie-dam/assets/images/pic/my-pic.png">
-										<div class="caption">
-											<h3>Nickname</h3>
-											<p>친구설명</p>
-											<p>
-												<a href="#" class="btn btn-default" role="button">언팔로우</a>
-											</p>
-										</div>
-									</div>
-								</div>
+					<div class="col-lg-4 order-lg-1">
+						<div class="card-profile-stats d-flex justify-content-center">
+							<div>
+								<a href="profile_following.jsp?mem_userid=<%=mem_userid%>">
+									<span class="heading" id="followingCnt"><%=following_cnt%></span>
+									<span class="description">팔로우</span>
+								</a>
 							</div>
-
+							<div>
+								<a href="profile_follower.jsp?mem_userid=<%=mem_userid%>"> 
+									<span class="heading" id="followerCnt"><%=follower_cnt%></span> 
+									<span class="description">팔로워</span>
+								</a>
+							</div>
+							<div>
+								<a href="#"> 
+									<span class="heading">26</span> 
+									<span class="description">좋아요</span>
+								</a>
+							</div>
 						</div>
-						
 					</div>
 				</div>
-			</div>
-			<!-- Blog Post (Right Sidebar) End -->
+				<div class="text-center mt-5">
+					<h3>
+						<a href="profile.jsp?mem_userid=<%=mem_userid%>"><%=user_profile.getMem_nickname()%></a>
+						<span class="font-weight-light" id="birth"></span>
+					</h3>
+					<div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>자기소개가 없습니다.</div>
+				</div>
 
-		</div> <!-- /.row -->
-	</div> <!-- /.container -->
-</div> <!-- /.main -->
+				<div class="mt-5 py-5 border-top text-center">
+					<%
+						if (followingList != null && followingList.size() > 0) {
+							for (int i = 0; i < followingList.size(); i++) {
+								FollowDataBean following = followingList.get(i);
+								MemberDataBean following_profile = mem_db.getProfile(following.getTarget_mem_id());
+					%>
+					<div class="single-review-area col">
+						<div class="reviewer-meta d-flex align-items-center">
+							<img src="/movie-dam/assets/img/profile-img/<%=following_profile.getMem_img()%>" alt="">
+							<div class="reviewer-content">
+								<div class="review-title-ratings d-flex justify-content-between">
+									<h6>
+										<a href="profile.jsp?mem_userid=<%=following_profile.getMem_userid()%>"><%=following_profile.getMem_nickname()%>
+											<small>(<%=following.getTarget_mem_id()%>)</small>
+										</a>
+									</h6>
+								</div>
+								<p>자기소개가 없습니다.</p>
+							</div>
+						</div>
+					</div>
+					<%
+						}
+							} else {
+					%>
+					<div class="single-review-area col">
+							<div class="alert alert-secondary" role="alert">
+							    <strong><%=user_profile.getMem_nickname() %></strong>님은 아직 팔로우중인 사람이 없습니다!
+							</div>
+					</div>
+					<%
+						}
+					%>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+</main>
+
+<%
+	} catch (Exception e) {
+%>
+	<script>
+		alert('잘못된 접근입니다!');
+		history.go(-1);
+	</script>		
+<%
+	}
+%>
 
 <jsp:include page="/module/footer.jsp" flush="false" />
+
+<script>
+$(document).ready(function() {
+	var birth = '<%=birth%>';
+	var b_year = birth.substring(0,4);
+	var b_month = birth.substring(4,6);
+	var b_date = birth.substring(6,8);
+	var birthday = new Date(b_year+'/'+b_month+'/'+b_date);
+	var today = new Date();
+	var years = today.getFullYear() - birthday.getFullYear();
+	$('#birth').text(', '+years);
+	
+	var rs = [];
+    var mem_id = '<%=userid%>';
+    var target_mem_id = '<%=mem_userid%>';
+    var fol_type = '<%=fol_type%>';
+	var follower_cnt = <%=follower_cnt%>;
+	if (fol_type == 'N') {
+		rs.push('<button type="submit" class="btn btn-sm btn-info mr-4" id="following">Follow</button>');
+		rs.push('<input type="hidden" name="mem_id" value="'+mem_id+'">');
+		rs.push('<input type="hidden" name="target_mem_id" value="'+target_mem_id+'">');
+		rs.push('<input type="hidden" name="currentFolType" value="N">');
+		rs.push('<input type="hidden" name="follower_cnt" value="'+follower_cnt+'">');
+		$('#followForm').append(rs.join(''));
+	} else if (fol_type == 'Y') {
+		rs.push('<button type="submit" class="btn btn-sm btn-danger mr-4" id="following">Unfollow</button>');
+		rs.push('<input type="hidden" name="mem_id" value="'+mem_id+'">');
+		rs.push('<input type="hidden" name="target_mem_id" value="'+target_mem_id+'">');
+		rs.push('<input type="hidden" name="currentFolType" value="Y">');
+		rs.push('<input type="hidden" name="follower_cnt" value="'+follower_cnt+'">');
+		$('#followForm').append(rs.join(''));
+	}
+
+	var currentFolType = '';
+	$('#followForm').submit(function(event) {
+		event.preventDefault();
+		var $form = $(this), 
+		mem_id = $form.find('input[name="mem_id"]').val(), 
+		target_mem_id = $form.find('input[name="target_mem_id"]').val(), 
+		fol_type = $form.find('input[name="currentFolType"]').val();
+		follower_cnt = $form.find('input[name="follower_cnt"]').val();
+
+		var posting = $.post('follow_pro.jsp', {
+			mem_id : mem_id,
+			target_mem_id : target_mem_id,
+			currentFolType : fol_type,
+			follower_cnt : follower_cnt
+		});
+		posting.done(function(data) {
+			console.log(data);
+			$('#followForm').find('input[name="currentFolType"]').val(data.ftype);
+
+			if (data.ftype == 'Y') {
+				$('#following').removeClass('btn-info');
+				$('#following').addClass('btn-danger');
+				$('#following').text('Unfollow');
+				$('#followerCnt').text(data.follower_cnt);
+			} else if (data.ftype == 'N') {
+				$('#following').removeClass('btn-danger');
+				$('#following').addClass('btn-info');
+				$('#following').text('Follow');
+				$('#followerCnt').text(data.follower_cnt);
+			}
+		});
+	});
+});
+</script>
 
 </body>
 </html>

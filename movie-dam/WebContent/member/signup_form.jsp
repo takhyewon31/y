@@ -34,7 +34,7 @@
 									</div>
 									<input class="form-control" placeholder="User id" type="text" id="inputUserId" name="mem_userid" >
 									<div class="input-group-append">
-										<button type="button" class="btn btn-sm btn-outline-secondary"  onClick="idConfirm(document.getElementById('inputUserId'));">중복확인</button>
+										<button type="button" class="btn btn-sm btn-outline-secondary" onClick="idConfirm(document.getElementById('inputUserId'));">중복확인</button>
 									</div>
 								</div>
 							</div>

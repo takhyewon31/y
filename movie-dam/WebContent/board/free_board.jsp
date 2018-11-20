@@ -71,25 +71,24 @@
 		</div>
 	</div>
 
-	<div class="row justify-content-center">
+	<div class="row justify-content-center mb-4">
 		<div class="btn-group" role="group" aria-label="Basic example">
-			<a href="free_board.jsp?category=all" id="all" class="btn btn-outline-secondary">전체</a>
-			<a href="free_board.jsp?category=talk" id="talk" class="btn btn-outline-secondary">사담</a>
-			<a href="free_board.jsp?category=movietalk" id="movietalk" class="btn btn-outline-secondary">영화후기</a>
-			<a href="free_board.jsp?category=spoiler" id="spoiler" class="btn btn-outline-secondary">스포일러</a>
-			<a href="free_board.jsp?category=movietmi" id="movietmi" class="btn btn-outline-secondary">영화TMI</a>
-			<a href="free_board.jsp?category=boast" id="boast" class="btn btn-outline-secondary">자랑하기</a>
-			<a href="free_board.jsp?category=hobby" id="hobby" class="btn btn-outline-secondary">덕질공간</a>
+			<a href="free_board.jsp?category=all" id="all" class="btn btn-outline-primary">전체</a>
+			<a href="free_board.jsp?category=talk" id="talk" class="btn btn-outline-primary">사담</a>
+			<a href="free_board.jsp?category=movietalk" id="movietalk" class="btn btn-outline-primary">영화후기</a>
+			<a href="free_board.jsp?category=spoiler" id="spoiler" class="btn btn-outline-primary">스포일러</a>
+			<a href="free_board.jsp?category=movietmi" id="movietmi" class="btn btn-outline-primary">영화TMI</a>
+			<a href="free_board.jsp?category=boast" id="boast" class="btn btn-outline-primary">자랑하기</a>
+			<a href="free_board.jsp?category=hobby" id="hobby" class="btn btn-outline-primary">덕질공간</a>
 		</div>
 	</div>
 	
-	<div class="row justify-content-center">
+	<div class="row justify-content-center mb-4">
 		<div class="col-12">
 			<form>
 				<input type="hidden" name="category" value="<%=category %>">
-				<label class="control-label">게시글 검색</label>
 				<div class="form-group">
-					<div class="input-group mb-3">
+					<div class="input-group">
 						<div class="input-group-prepend">
 							<select class="form-control" name="option">
 						        <option value="all">전체글</option>
@@ -100,7 +99,7 @@
 						</div>
 						<input class="form-control" type="text" name="search" placeholder="궁금한 것을 검색해보세요">
 						<div class="input-group-append">
-							<input class="btn btn-outline-secondary" type="submit" value="검색"> 
+							<input class="btn btn-dark" type="submit" value="검색"> 
 						</div>
 					</div>
 				</div>
@@ -118,7 +117,7 @@
 
 <% } else {%>
 
-	<table class="table table-bordered table-hover">
+	<table class="table table-hover">
 		<colgroup>
 			<col width="8%">
 			<col width="8%">
@@ -130,8 +129,8 @@
 			<col width="8%">
 			
 		</colgroup>
-		<thead >
-		    <tr>
+		<thead>
+		    <tr align="center">
 		      <th scope="col">번호</th>
 		      <th scope="col">분류</th>
 		      <th scope="col">제목</th>
@@ -140,7 +139,6 @@
 		      <th scope="col">댓글수</th>
 		      <th scope="col">추천수</th>
 		      <th scope="col">조회수</th>
-		      
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -157,18 +155,17 @@
 	       ccount = comment_db.getCommentCount(article.getArticle_id());
 	%>
 			<tr>
-			    <td><%=number--%></td>
-			    <td><%=article.getCategory()%></td>
+			    <td class="text-center"><%=number--%></td>
+			    <td class="text-center"><%=article.getCategory()%></td>
 	
 	           
 	      		<td><a href="content.jsp?article_id=<%=article.getArticle_id()%>&pageNum=<%=currentPage%>&board_id=1&category=<%=category%>"><%=article.getArticle_title()%></a>
-	<% 		if(article.getArticle_hits()<=20){%> <span class="badge badge-info">N</span><%}%>
 				</td>
-	    		<td><%=article.getArticle_writer()%></td>
+	    		<td class="text-center"><%=article.getArticle_writer()%></td>
 				<td class="text-center"><%=sdf.format(article.getReg_date())%></td>
 				<td class="text-center"><%=ccount%></td>
 				<td class="text-center"><%=article.getArticle_gets() %></td>
-				<td class="text-right"><%=article.getArticle_hits()%></td>
+				<td class="text-center"><%=article.getArticle_hits()%></td>
 	  		</tr>
 	<%	} %>
 			</tbody>
@@ -176,8 +173,10 @@
 	
 		
 <%}%>
-
-<a class="btn btn-sm btn-outline-secondary" href="writeForm.jsp?board_id=1&article_writer=${sessionScope.userid}" role="button" >글쓰기</a>	
+	<div class="row mb-3 mr-2 d-flex justify-content-end">
+		<a class="btn btn-dark" href="writeForm.jsp?board_id=1&article_writer=${sessionScope.userid}" role="button">글쓰기</a>
+	</div>
+	
 <nav aria-label="Page navigation">
 	<ul class="pagination justify-content-center">
 <%

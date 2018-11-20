@@ -35,7 +35,7 @@
 					  <div class="media-body">
 					  <a class="btn btn-sm btn-outline-secondary" href="http://localhost:3005/room" role="button" >글쓰기</a>
 					    <h4 class="mt-0 mb-1">‘나의 라임 오렌지나무’ 에서 제제가 아버지에게 담배를 사드린 것은 옳은 일일까?</h4>
-					    <button type="button" class="btn btn-outline-primary" onclick="location.href='http://localhost:3005/room/5bc893c298af5813c8ed7b74?password=1234' ">참여하기</button>
+					    <button type="button" class="btn btn-outline-primary" onclick="window.open('http://localhost:3005/room/5bc9676a615b6832d0d8bb2b')">참여하기</button>
 					   	<div class="hashtag">
 						  	<a type="buttn" class="btn btn-outline-primary btn-sm">#미성년자</a>
 						  	<a type="buttn" class="btn btn-outline-primary btn-sm">#가족</a>

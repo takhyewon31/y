@@ -42,12 +42,14 @@
 	//가져올 데이터
 	String cb_writer = multi.getParameter("cb_writer");
 	String cb_title = multi.getParameter("cb_title");
+	String cb_movie = multi.getParameter("cb_movie");
 	Timestamp reg_date = new Timestamp(System.currentTimeMillis());
 	String cb_content = multi.getParameter("cb_content");
 	String cb_type = multi.getParameter("cb_type");
 
 	chanban.setCb_writer(cb_writer);
 	chanban.setCb_title(cb_title);
+	chanban.setCb_movie(cb_movie);
 	chanban.setCb_content(cb_content);
 	chanban.setReg_date(reg_date);
 	chanban.setCb_file(fileName);

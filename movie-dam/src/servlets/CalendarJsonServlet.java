@@ -1,11 +1,7 @@
 package servlets;
 
+
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,22 +11,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modal.CalendarDTO;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.google.gson.Gson;
+
+import modal.CalendarDTO;
+
 
 /**
  * Servlet implementation class CalendarJsonServlet
  */
-@WebServlet(name = "CalendarJsonServlet", urlPatterns = {"/CalendarJsonServlet"})
+@WebServlet("/CalendarJsonServlet")
 public class CalendarJsonServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CalendarJsonServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 try {
 	            
 	            List progs = new ArrayList();
 	            
 	            Class.forName("com.mysql.jdbc.Driver");
-	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/calendar", "miso", "misoadmin");
+	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/miso?useSSL=true", "miso", "misoadmin");
 	            ResultSet rs = con.createStatement().executeQuery("SELECT `id`, `title`, `start`, `end` FROM `events`");
 	            
 	            while (rs.next()) {
@@ -46,7 +62,9 @@ public class CalendarJsonServlet extends HttpServlet {
 	            response.setCharacterEncoding("UTF-8");
 	            PrintWriter out = response.getWriter();
 	            out.write(new Gson().toJson(progs));
-	         
+	            
+	           
+	            
 	        } catch (ClassNotFoundException ex) {
 	            Logger.getLogger(CalendarJsonServlet.class.getName()).log(Level.SEVERE, null, ex);
 	        } catch (SQLException ex) {
@@ -54,5 +72,5 @@ public class CalendarJsonServlet extends HttpServlet {
 	        }
 	        
 	    }
-
-}
+	    
+	}

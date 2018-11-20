@@ -36,7 +36,7 @@
 		
 		if(check==1){
 %>
-			<meta http-equiv="Refresh" content="0;url=cinema_restaurant.jsp?board_id=<%=board_id%>&pageNum=<%=pageNum%>">
+			<meta http-equiv="Refresh" content="0;url=cinema_restaurant.jsp?board_id=<%=board_id%>&theater=all&pageNum=<%=pageNum%>">
 <% 
 		} else {
 %>
